@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
-    protected $fillable = ['title', 'user_id', 'is_completed', 'priority'];
+    use HasFactory;
 
-    // This task belongs to a User
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $fillable = [
+        'title',
+        'is_completed',
+        'priority',
+        'due_date', // <-- Add this line!
+        'user_id'
+    ];
 }

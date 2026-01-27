@@ -9,12 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up()
-{
-    Schema::table('tasks', function (Blueprint $table) {
-        $table->date('due_date')->nullable();
-    });
-}
+    public function up(): void
+    {
+        Schema::table('tasks', function (Blueprint $table) {
+            //
+        });
+    }
 
     /**
      * Reverse the migrations.
