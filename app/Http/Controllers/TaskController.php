@@ -16,14 +16,20 @@ public function index()
     return view('dashboard', compact('tasks'));
 }
 
-public function store(Request $request) {
+public function store(Request $request)
+{
     $request->validate([
-        'title' => 'required|min:3',
-        'priority' => 'required|in:low,medium,high' // Ensures only these 3 are saved
+        'title' => 'required',
+        'due_date' => 'nullable|date' // Validate the date
     ]);
 
-    auth()->user()->tasks()->create($request->all());
-    return back()->with('success', 'Task added!');
+    auth()->user()->tasks()->create([
+        'title' => $request->title,
+        'priority' => $request->priority,
+        'due_date' => $request->due_date,
+    ]);
+
+    return back();
 }
 
     public function destroy(Task $task) {
